@@ -3,9 +3,25 @@ Hello GitHub!
 package main
 import "fmt"
 
+
+func foo1(a sting,b int) int {
+    fmt.Println("a=",a)
+    fmt.Println("b=",b)
+    c:=67
+    return c
+}
+func foo2(a string,b int) (int,int){
+    fmt.Println("a=",a)
+    fmt.Println("b=",b)
+    return 666,777
+}
 func main() {
-	a:=1
+	d:=1
 	fmt.Println("Hello, World!")
-	fmt.Println("",a)
+	fmt.Println("",d)
+    c:=foo1("abc",123)
+    fmt.Println("c=",c)
+    ret1,ret2:=foo2("haha",555)
+    fmt.Println("ret1=","ret2=",ret1,ret2)
 	
 }
