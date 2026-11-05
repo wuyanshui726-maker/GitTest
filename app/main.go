@@ -92,4 +92,26 @@ func main() {
 	n := copy(dst, src)
 	fmt.Printf("dst=%v,src=%v,n=%d\n", dst, src, n)
 	
+	//map是哈希表，无序的，且key是唯一的，value可以重复
+	fmt.Println("====== map ======")
+	//声明map1是map类型，在这还没分配空间用不了，key是string类型，value是string类型
+	var map1 map[string]string
+	map1 = make(map[string]string,10)//分配空间，容量为10
+	map1["name"] = "张三"
+	map1["age"] = "18"
+	map1["number"] = "2024337621321"
+	map1["address"] = "北京市"
+	map1["id"] = "250" 
+	fmt.Printf("map1=%v\n", map1)
+	//声明map2是map类型，key是string类型，value是int类型，并初始化
+	map2 := map[string]int{"a": 1, "b": 2}
+	fmt.Printf("map2=%v\n", map2)
+	//删除map中的元素，delete(map, key)
+	delete(map1, "age")
+	fmt.Printf("删除后map1=%v\n", map1)
+
+	//遍历map，for key, value := range map
+	for k, v := range map2 {
+		fmt.Printf("key=%s,value=%d\n", k, v)
+	}
 }
