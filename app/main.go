@@ -66,4 +66,30 @@ func main() {
 	} else {
 		fmt.Println("slice1不是nil")
 	}
+
+	//切片追加
+	fmt.Println("====== 切片追加 ======")
+    //切片长度len=3和容量cap=5，长度是已经有的元素，现在numbers为{0，0，0}
+	var numbers = make([]int, 3, 5)
+    fmt.Printf("len=%d,cap=%d,slice=%v\n", len(numbers), cap(numbers), numbers)
+    //向numbers切片中添加元素1,2,3,4，3个元素已经有了，添加4个元素后，超过了容量5，所以会重新分配内存，容量变为10,扩容一倍
+	numbers = append(numbers, 1, 2, 3, 4)
+    fmt.Printf("len=%d,cap=%d,slice=%v\n", len(numbers), cap(numbers), numbers)
+    numbers = append(numbers, 5)    
+	fmt.Printf("len=%d,cap=%d,slice=%v\n", len(numbers), cap(numbers), numbers)
+    numbers = append(numbers, 6)
+    fmt.Printf("len=%d,cap=%d,slice=%v\n", len(numbers), cap(numbers), numbers)
+
+	//切片截取,s2:=s:[start:end],左闭右开,从start到end-1的元素，如果s2:=s:[:]则表示截取整个切片
+	fmt.Println("====== 切片截取 ======")
+	s:= []int{1, 2, 3, 4, 5}
+	s1 := s[2:4] //截取索引2到4的元素，左闭右开
+	fmt.Printf("s1=%v\n", s1)
+	//切片copy,copy(dst,src),把src的元素复制到dst中，返回复制的元素个数，dst和src可以是不同长度的切片，复制的元素个数为min(len(dst),len(src))
+	fmt.Println("====== 切片copy ======")
+	dst := make([]int, 5)
+	src := []int{1, 2, 3}
+	n := copy(dst, src)
+	fmt.Printf("dst=%v,src=%v,n=%d\n", dst, src, n)
+	
 }
