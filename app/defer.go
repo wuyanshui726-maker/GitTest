@@ -1,4 +1,5 @@
 package main
+
 import "fmt"
 
 func f1() {
@@ -10,8 +11,11 @@ func f2() {
 func f3() {
 	fmt.Println("c")
 }
-func main() {
-    defer f1()
+
+// DeferDemo 演示 defer 压栈先进后出
+func DeferDemo() {
+	defer f1()
 	defer f2()
 	defer f3()
+	fmt.Println("--- defer 示例开始 ---")
 }
