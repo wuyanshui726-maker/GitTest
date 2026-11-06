@@ -1,0 +1,9 @@
+﻿
+StarUML.exe : 
+所在位置 行:15 字符: 1617
++ ... M = 'dumb'; & "D:\StarUML-4.0.1\StarUML.exe" --disable-renderer-backg ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+DevTools listening on ws://127.0.0.1:9222/devtools/browser/23f0eb02-ce74-4b4e-a6a4-905490ca5295

@@ -1,0 +1,246 @@
+{
+  "menu": [
+    {
+      "label": "StarUML",
+      "id": "app",
+      "submenu": [
+        { "label": "关于 StarUML", "id": "app.about", "command": "help:about" },
+        { "type": "separator" },
+        { "label": "首选项...", "id": "app.preferences", "command": "application:preferences" },
+        { "type": "separator" },
+        { "label": "服务", "role": "services", "submenu": [] },
+        { "type": "separator" },
+        { "label": "隐藏 StarUML", "role": "hide" },
+        { "label": "隐藏其他", "role": "hideothers" },
+        { "label": "全部显示", "role": "unhide" },
+        { "type": "separator" },
+        { "label": "退出", "id": "app.quit", "role": "quit" }
+      ]
+    },
+    {
+      "label": "文件",
+      "id": "file",
+      "submenu": [
+        { "label": "新建", "id": "file.new", "command": "application:new" },
+        { "label": "从模版新建", "id": "file.new-from-template", "command": "application:new-from-template" },
+        { "label": "打开...", "id": "file.open", "command": "project:open" },
+        { "label": "打开最近的文件", "id": "file.open-recent", "submenu": [] },
+        { "label": "保存", "id": "file.save", "command": "project:save" },
+        { "label": "另存为...", "id": "file.save-as", "command": "project:save-as" },
+        { "label": "关闭", "id": "file.close", "command": "project:close" },
+        { "type": "separator" },
+        {
+          "label": "导入",
+          "id": "file.import",
+          "submenu": [
+            { "label": "片段...", "id": "file.import.fragment", "command": "project:import-fragment" }
+          ]
+        },
+        {
+          "label": "导出",
+          "id": "file.export",
+          "submenu": [
+            { "label": "片段...", "id": "file.export.fragment", "command": "project:export-fragment" }
+          ]
+        },
+        {
+          "label": "导出图为",
+          "id": "file.export-diagram-as",
+          "submenu": [
+            { "label": "PNG...", "id": "file.export-diagram-as.png", "command": "project:export-diagram-to-png" },
+            { "label": "JPEG...", "id": "file.export-diagram-as.jpeg", "command": "project:export-diagram-to-jpeg" },
+            { "label": "SVG...", "id": "file.export-diagram-as.svg", "command": "project:export-diagram-to-svg" },
+            { "type": "separator" },
+            { "label": "所有到 PNGs...", "id": "file.export-diagram-as.all-to-pngs", "command": "project:export-diagram-all-to-pngs" },
+            { "label": "所有到 JPEGs...", "id": "file.export-diagram-as.all-to-jpegs", "command": "project:export-diagram-all-to-jpegs" },
+            { "label": "所有到 SVGs...", "id": "file.export-diagram-as.all-to-svg", "command": "project:export-diagram-all-to-svgs" }
+          ]
+        },
+        { "type": "separator" },
+        { "label": "打印 PDF...", "id": "file.print-to-pdf", "command": "project:print-to-pdf" }
+      ]
+    },
+    {
+      "label": "编辑",
+      "id": "edit",
+      "submenu": [
+        { "label": "撤销", "id": "edit.undo", "command": "edit:undo" },
+        { "label": "恢复", "id": "edit.redo", "command": "edit:redo" },
+        { "type": "separator" },
+        { "label": "剪切", "id": "edit.cut", "command": "edit:cut" },
+        { "label": "复制", "id": "edit.copy", "command": "edit:copy" },
+        { "label": "复制图为图片", "id": "edit.copy-diagram-as-image", "command": "edit:copy-diagram-as-image" },
+        { "label": "粘贴", "id": "edit.paste", "command": "edit:paste" },
+        { "label": "删除", "id": "edit.delete", "command": "edit:delete" },
+        { "label": "从模型删除", "id": "edit.delete-from-model", "command": "edit:delete-from-model" },
+        { "type": "separator" },
+        { "label": "向上移动", "id": "edit.move-up", "command": "edit:move-up" },
+        { "label": "向下移动", "id": "edit.move-down", "command": "edit:move-down" },
+        { "type": "separator" },
+        { "label": "全选", "id": "edit.select-all", "command": "edit:select-all" },
+        { "label": "从管理器选择", "id": "edit.select-in-explorer", "command": "edit:select-in-explorer" },
+        { "label": "从图选择", "id": "edit.select-in-diagram", "command": "edit:select-in-diagram" }
+      ]
+    },
+    {
+      "label": "格式",
+      "id": "format",
+      "submenu": [
+        { "label": "字体...", "id": "format.font", "command": "format:font" },
+        { "label": "填充颜色...", "id": "format.fill-color", "command": "format:fill-color" },
+        { "label": "线条颜色...", "id": "format.line-color", "command": "format:line-color" },
+        { "type": "separator" },
+        {
+          "label": "线条样式",
+          "id": "format.linestyle",
+          "submenu": [
+            { "label": "直线", "id": "format.linestyle.rectilinear", "type": "checkbox", "command": "format:linestyle-rectilinear" },
+            { "label": "斜线", "id": "format.linestyle.oblique", "type": "checkbox", "command": "format:linestyle-oblique" },
+            { "label": "圆角", "id": "format.linestyle.roundrect", "type": "checkbox", "command": "format:linestyle-roundrect" },
+            { "label": "曲线", "id": "format.linestyle.curve", "type": "checkbox", "command": "format:linestyle-curve" }
+          ]
+        },
+        { "label": "自动调整大小", "id": "format.auto-resize", "type": "checkbox", "command": "format:auto-resize" },
+        { "label": "显示阴影", "id": "format.show-shadow", "type": "checkbox", "command": "format:show-shadow" }
+      ]
+    },
+    {
+      "label": "模型",
+      "id": "model",
+      "submenu": [
+        { "label": "添加图", "id": "model.add-diagram", "command": "model:add-diagram" },
+        { "label": "添加", "id": "model.add", "command": "model:add" },
+        { "type": "separator" },
+        { "label": "标签编辑器...", "id": "model.tag-editor", "command": "model:tag-editor" }
+      ]
+    },
+    {
+      "label": "工具",
+      "id": "tools",
+      "submenu": [
+        { "label": "扩展管理...", "id": "tools.extension-manager", "command": "tools:extension-manager" }
+      ]
+    },
+    {
+      "label": "视图",
+      "id": "view",
+      "submenu": [
+        { "label": "命令面板...", "id": "view.command-palette", "command": "view:command-palette" },
+        { "type": "separator" },
+        { "label": "关闭图", "id": "view.close-diagram", "command": "view:close-diagram" },
+        { "label": "关闭其他图", "id": "view.close-other-diagrams", "command": "view:close-other-diagrams" },
+        { "label": "关闭所有图", "id": "view.close-all-diagrams", "command": "view:close-all-diagrams" },
+        { "type": "separator" },
+        { "label": "下一个图", "id": "view.next-diagram", "command": "view:next-diagram" },
+        { "label": "上一个图", "id": "view.previous-diagram", "command": "view:previous-diagram" },
+        { "type": "separator" },
+        { "label": "放大", "id": "view.zoom-in", "command": "view:zoom-in" },
+        { "label": "缩小", "id": "view.zoom-out", "command": "view:zoom-out" },
+        { "label": "实际大小", "id": "view.actual-size", "command": "view:actual-size" },
+        { "label": "适合窗口", "id": "view.fit-to-window", "command": "view:fit-to-window" },
+        { "type": "separator" },
+        { "label": "显示网格", "id": "view.show-grid", "type": "checkbox", "command": "view:show-grid" },
+        { "type": "separator" },
+        { "label": "侧边栏", "id": "view.sidebar", "type": "checkbox", "command": "view:sidebar" },
+        { "label": "导航栏", "id": "view.navigator", "type": "checkbox", "command": "view:navigator" },
+        { "label": "工具条", "id": "view.toolbar", "type": "checkbox", "command": "view:toolbar" },
+        { "label": "状态条", "id": "view.statusbar", "type": "checkbox", "command": "view:statusbar" },
+        { "label": "工具箱", "id": "view.toolbox", "type": "checkbox", "command": "view:toolbox" },
+        { "label": "编辑器", "id": "view.editors", "type": "checkbox", "command": "view:editors" }
+      ]
+    },
+    {
+      "label": "窗口",
+      "role": "window",
+      "id": "window",
+      "submenu": [
+        { "label": "最小化", "role": "minimize" },
+        { "label": "缩放", "role": "zoom" },
+        { "label": "全屏", "role": "togglefullscreen" },
+        { "type": "separator" },
+        { "label": "全部置于顶层", "role": "front" }
+      ]
+    },
+    {
+      "label": "帮助",
+      "role": "help",
+      "id": "help",
+      "submenu": [
+        { "label": "检查更新...", "id": "help.check-for-updates", "command": "help:check-for-updates" },
+        { "type": "separator" },
+        { "label": "输入许可证密钥...", "id": "help.enter-license-key", "command": "help:enter-license-key" },
+        { "label": "删除许可证密钥...", "id": "help.delete-license-key", "command": "help:delete-license-key" },
+        { "type": "separator" },
+        { "label": "文档...", "id": "help.documentation", "command": "help:documentation" },
+        { "label": "论坛...", "id": "help.forum", "command": "help:forum" },
+        { "label": "功能特性...", "id": "help.request-feature", "command": "help:request-feature" }
+      ]
+    }
+  ],
+  "context-menu": {
+    "diagram-canvas": [
+      { "label": "添加", "id": "model.add", "command": "model:add" },
+      { "label": "添加图", "id": "model.add-diagram", "command": "model:add-diagram" },
+      { "type": "separator" },
+      {
+        "label": "格式",
+        "id": "format",
+        "submenu": [
+          { "label": "字体...", "id": "format.font", "command": "format:font" },
+          { "label": "填充颜色...", "id": "format.fill-color", "command": "format:fill-color" },
+          { "label": "线条颜色...", "id": "format.line-color", "command": "format:line-color" },
+          { "type": "separator" },
+          {
+            "label": "线条样式",
+            "id": "format.linestyle",
+            "submenu": [
+              { "label": "直线", "id": "format.linestyle.rectilinear", "type": "checkbox", "command": "format:linestyle-rectilinear" },
+              { "label": "斜线", "id": "format.linestyle.oblique", "type": "checkbox", "command": "format:linestyle-oblique" },
+              { "label": "圆角", "id": "format.linestyle.roundrect", "type": "checkbox", "command": "format:linestyle-roundrect" },
+              { "label": "曲线", "id": "format.linestyle.curve", "type": "checkbox", "command": "format:linestyle-curve" }
+            ]
+          },
+          { "label": "自动调整大小", "id": "format.auto-resize", "type": "checkbox", "command": "format:auto-resize" },
+          { "label": "显示阴影", "id": "format.show-shadow", "type": "checkbox", "command": "format:show-shadow" }
+        ]
+      },
+      { "type": "separator" },
+      { "label": "剪切", "id": "edit.cut", "command": "edit:cut" },
+      { "label": "复制", "id": "edit.copy", "command": "edit:copy" },
+      { "label": "粘贴", "id": "edit.paste", "command": "edit:paste" },
+      { "label": "全选", "id": "edit.select-all", "command": "edit:select-all" },
+      { "label": "删除", "id": "edit.delete", "command": "edit:delete" },
+      { "label": "从模型删除", "id": "edit.delete-from-model", "command": "edit:delete-from-model" },
+      { "type": "separator" },
+      { "label": "从管理器选择", "id": "edit.select-in-explorer", "command": "edit:select-in-explorer" },
+      { "label": "从图选择", "id": "edit.select-in-diagram", "command": "edit:select-in-diagram" }
+    ],
+    "model-explorer": [
+      { "label": "添加图", "id": "model.add-diagram", "command": "model:add-diagram" },
+      { "label": "添加", "id": "model.add", "command": "model:add" },
+      { "type": "separator" },
+      { "label": "剪切", "id": "edit.cut", "command": "edit:cut" },
+      { "label": "复制", "id": "edit.copy", "command": "edit:copy" },
+      { "label": "粘贴", "id": "edit.paste", "command": "edit:paste" },
+      { "label": "从模型删除", "id": "edit.delete-from-model", "command": "edit:delete-from-model" },
+      { "type": "separator" },
+      { "label": "向上移动", "id": "edit.move-up", "command": "edit:move-up" },
+      { "label": "向下移动", "id": "edit.move-down", "command": "edit:move-down" },
+      { "type": "separator" },
+      { "label": "从图选择", "id": "edit.select-in-diagram", "command": "edit:select-in-diagram" }
+    ],
+    "working-diagrams": [
+      { "label": "关闭图", "id": "view.close-diagram", "command": "view:close-diagram" },
+      { "label": "关闭其他图", "id": "view.close-other-diagrams", "command": "view:close-other-diagrams" },
+      { "label": "关闭所有图", "id": "view.close-all-diagrams", "command": "view:close-all-diagrams" },
+      { "type": "separator" },
+      { "label": "重命名", "id": "view.rename-diagram", "command": "view:rename-diagram" }
+    ],
+    "model-explorer-settings": [
+      { "label": "按添加排序", "id": "explorer.sort-by-added", "type": "checkbox", "command": "explorer:sort-by-added" },
+      { "label": "按名称排序", "id": "explorer.sort-by-name", "type": "checkbox", "command": "explorer:sort-by-name" },
+      { "type": "separator" },
+      { "label": "显示构造型文本", "id": "explorer.show-stereotype-text", "type": "checkbox", "command": "explorer:show-stereotype-text" }
+    ]
+  }
+}

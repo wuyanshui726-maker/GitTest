@@ -1,0 +1,9 @@
+﻿
+StarUML.exe : 
+所在位置 行:15 字符: 1735
++ ... ize; "---"; & "D:\StarUML-4.0.1\StarUML.exe" --remote-debugging-port= ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+DevTools listening on ws://127.0.0.1:9222/devtools/browser/54040cb6-8c50-421e-83a5-764a78f19e65

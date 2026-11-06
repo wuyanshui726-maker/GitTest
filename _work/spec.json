@@ -1,0 +1,323 @@
+{
+  "projectName": "电子商务网站UML模型",
+  "modelName": "电子商务网站",
+  "useCase": {
+    "diagram": "系统用例图",
+    "boundary": { "name": "电子商务网站系统", "x": 180, "y": 70, "w": 1620, "h": 1120 },
+    "actors": [
+      { "id": "guest", "name": "游客", "cx": 90, "y": 230 },
+      { "id": "buyer", "name": "买家", "cx": 90, "y": 760 },
+      { "id": "seller", "name": "卖家", "cx": 1890, "y": 190 },
+      { "id": "admin", "name": "平台管理员", "cx": 1890, "y": 990 }
+    ],
+    "useCases": [
+      { "id": "uc_browse", "name": "浏览商品", "cx": 450, "cy": 160 },
+      { "id": "uc_search", "name": "搜索商品", "cx": 450, "cy": 280 },
+      { "id": "uc_reg", "name": "注册", "cx": 450, "cy": 400 },
+      { "id": "uc_login", "name": "登录", "cx": 450, "cy": 520 },
+      { "id": "uc_cmp", "name": "商品比价", "cx": 450, "cy": 640 },
+      { "id": "uc_cart", "name": "管理购物车", "cx": 450, "cy": 760 },
+      { "id": "uc_coupon", "name": "使用优惠券", "cx": 800, "cy": 660 },
+      { "id": "uc_order", "name": "提交订单", "cx": 800, "cy": 780 },
+      { "id": "uc_pay", "name": "支付", "cx": 800, "cy": 900 },
+      { "id": "uc_recv", "name": "确认收货", "cx": 800, "cy": 1020 },
+      { "id": "uc_price", "name": "联系店家改价", "cx": 1100, "cy": 660 },
+      { "id": "uc_addr", "name": "确认配送地址", "cx": 1100, "cy": 900 },
+      { "id": "uc_return", "name": "申请退货", "cx": 1100, "cy": 1020 },
+      { "id": "uc_join", "name": "申请入驻", "cx": 1360, "cy": 160 },
+      { "id": "uc_shop", "name": "开店", "cx": 1360, "cy": 280 },
+      { "id": "uc_pub", "name": "发布商品", "cx": 1360, "cy": 400 },
+      { "id": "uc_goods", "name": "管理商品", "cx": 1360, "cy": 520 },
+      { "id": "uc_orders", "name": "管理订单", "cx": 1360, "cy": 640 },
+      { "id": "uc_cust", "name": "管理客户", "cx": 1360, "cy": 760 },
+      { "id": "uc_promo", "name": "促销管理", "cx": 1360, "cy": 880 },
+      { "id": "uc_promote", "name": "推广引流", "cx": 1360, "cy": 1000 },
+      { "id": "uc_audit", "name": "审核入驻申请", "cx": 1660, "cy": 880 },
+      { "id": "uc_cat", "name": "管理商品类别", "cx": 1660, "cy": 1000 },
+      { "id": "uc_ret", "name": "处理退货申请", "cx": 1660, "cy": 1120 }
+    ],
+    "actorLinks": [
+      ["guest", "uc_browse"], ["guest", "uc_search"], ["guest", "uc_reg"], ["guest", "uc_login"],
+      ["buyer", "uc_cmp"], ["buyer", "uc_cart"], ["buyer", "uc_order"], ["buyer", "uc_recv"],
+      ["seller", "uc_join"], ["seller", "uc_shop"], ["seller", "uc_pub"], ["seller", "uc_goods"],
+      ["seller", "uc_orders"], ["seller", "uc_cust"], ["seller", "uc_promo"], ["seller", "uc_promote"],
+      ["admin", "uc_audit"], ["admin", "uc_cat"], ["admin", "uc_ret"]
+    ],
+    "relations": [
+      { "from": "uc_coupon", "to": "uc_order", "type": "extend" },
+      { "from": "uc_order", "to": "uc_pay", "type": "include" },
+      { "from": "uc_order", "to": "uc_addr", "type": "include" },
+      { "from": "uc_price", "to": "uc_order", "type": "extend" },
+      { "from": "uc_return", "to": "uc_recv", "type": "extend" },
+      { "from": "uc_goods", "to": "uc_pub", "type": "extend" }
+    ]
+  },
+  "sequences": [
+    {
+      "diagram": "购买商品顺序图",
+      "lifelines": [
+        { "id": "l0", "name": "买家", "x": 220 },
+        { "id": "l1", "name": "电子商务平台", "x": 660 },
+        { "id": "l2", "name": "卖家", "x": 1090 },
+        { "id": "l3", "name": "支付系统", "x": 1470 }
+      ],
+      "messages": [
+        { "from": "l0", "to": "l1", "text": "浏览 / 搜索商品()", "kind": "sync" },
+        { "from": "l1", "to": "l1", "text": "查询商品信息与库存", "kind": "self" },
+        { "from": "l0", "to": "l1", "text": "加入购物车()", "kind": "sync" },
+        { "from": "l0", "to": "l1", "text": "提交订单(商品、数量)", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "推送订单(待卖家确认)", "kind": "sync" },
+        { "from": "l0", "to": "l1", "text": "请求联系店家改价", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "转发改价请求", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "修改订单价格", "kind": "sync" },
+        { "from": "l1", "to": "l0", "text": "返回改价后的订单金额", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "使用优惠券并确认收货地址", "kind": "sync" },
+        { "from": "l1", "to": "l1", "text": "计算优惠金额与运费", "kind": "self" },
+        { "from": "l0", "to": "l1", "text": "选择支付方式并支付()", "kind": "sync" },
+        { "from": "l1", "to": "l3", "text": "发起支付请求(金额)", "kind": "sync" },
+        { "from": "l3", "to": "l1", "text": "支付成功回调(交易号)", "kind": "return" },
+        { "from": "l1", "to": "l0", "text": "支付成功，订单已确认", "kind": "return" },
+        { "from": "l1", "to": "l2", "text": "通知发货", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "确认订单并发货(物流单号)", "kind": "sync" },
+        { "from": "l1", "to": "l0", "text": "发货通知与物流信息", "kind": "return" }
+      ]
+    },
+    {
+      "diagram": "发布商品顺序图",
+      "lifelines": [
+        { "id": "l0", "name": "卖家", "x": 220 },
+        { "id": "l1", "name": "卖家中心(平台)", "x": 650 },
+        { "id": "l2", "name": "商品管理服务", "x": 1120 },
+        { "id": "l3", "name": "图片存储服务", "x": 1510 }
+      ],
+      "messages": [
+        { "from": "l0", "to": "l1", "text": "登录并进入卖家中心", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "校验卖家身份与店铺权限", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "返回店铺列表", "kind": "return" },
+        { "from": "l1", "to": "l0", "text": "显示店铺与商品类别", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "选择店铺与商品类别", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "获取类别属性模板", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "返回属性模板(名称、类型、必填项)", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "填写商品信息(名称、价格、库存等)", "kind": "sync" },
+        { "from": "l0", "to": "l1", "text": "上传商品图片(可多张)", "kind": "sync" },
+        { "from": "l1", "to": "l3", "text": "保存图片文件", "kind": "sync" },
+        { "from": "l3", "to": "l1", "text": "返回图片URL列表", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "设置自定义属性(功率、材质等)", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "校验属性并保存商品", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "返回商品编号", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "设置上架时间并提交上架", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "更新商品状态为上架", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "返回上架成功", "kind": "return" },
+        { "from": "l1", "to": "l0", "text": "商品发布成功", "kind": "return" }
+      ]
+    },
+    {
+      "diagram": "卖家入驻与开店顺序图",
+      "lifelines": [
+        { "id": "l0", "name": "卖家", "x": 220 },
+        { "id": "l1", "name": "电子商务平台", "x": 700 },
+        { "id": "l2", "name": "认证服务", "x": 1180 },
+        { "id": "l3", "name": "平台管理员", "x": 1560 }
+      ],
+      "messages": [
+        { "from": "l0", "to": "l1", "text": "提交入驻申请(资质材料)", "kind": "sync" },
+        { "from": "l1", "to": "l2", "text": "校验营业执照与实名信息", "kind": "sync" },
+        { "from": "l2", "to": "l1", "text": "返回校验结果", "kind": "return" },
+        { "from": "l1", "to": "l3", "text": "生成待审核任务", "kind": "sync" },
+        { "from": "l3", "to": "l1", "text": "查看资质材料并审核", "kind": "sync" },
+        { "from": "l3", "to": "l1", "text": "审核通过，分配卖家账号", "kind": "sync" },
+        { "from": "l1", "to": "l0", "text": "通知入驻成功", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "开店(店铺名称、经营模式)", "kind": "sync" },
+        { "from": "l1", "to": "l1", "text": "创建店铺并绑定卖家账号", "kind": "self" },
+        { "from": "l1", "to": "l0", "text": "返回店铺创建成功", "kind": "return" },
+        { "from": "l0", "to": "l1", "text": "选择经营模式(自营 / 推广)", "kind": "sync" },
+        { "from": "l1", "to": "l0", "text": "入驻完成，可发布商品", "kind": "return" }
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "diagram": "类图（一）：用户、店铺与商品",
+      "canvas": [1500, 1120],
+      "items": [
+        { "id": "user", "name": "用户 User", "x": 560, "y": 30, "w": 360,
+          "attrs": ["用户编号: String", "用户名: String", "手机号: String", "用户类型: 枚举"] },
+        { "id": "buyer", "name": "买家 Buyer", "x": 110, "y": 270, "w": 350,
+          "attrs": ["买家编号: String", "买家等级: int", "积分: int"],
+          "ops": ["下单()", "申请退货()"] },
+        { "id": "seller", "name": "卖家 Seller", "x": 1040, "y": 270, "w": 350,
+          "attrs": ["卖家编号: String", "认证状态: String", "保证金: Decimal"],
+          "ops": ["申请入驻()", "发布商品()"] },
+        { "id": "category", "name": "商品类别 Category", "x": 90, "y": 550, "w": 340,
+          "attrs": ["类别编号: String", "类别名称: String", "父类别编号: String"],
+          "ops": ["添加子类别()"] },
+        { "id": "product", "name": "商品 Product", "x": 550, "y": 510, "w": 400,
+          "attrs": ["商品编号: String", "商品名称: String", "价格: Decimal", "库存数量: int", "是否上架: Boolean", "是否可租赁: Boolean"],
+          "ops": ["上架()", "计算实付价()"] },
+        { "id": "shop", "name": "店铺 Shop", "x": 1040, "y": 575, "w": 350,
+          "attrs": ["店铺编号: String", "店铺名称: String", "经营模式: 枚举", "店铺状态: String"],
+          "ops": ["管理商品()"] },
+        { "id": "image", "name": "商品图片 ProductImage", "x": 550, "y": 880, "w": 360,
+          "attrs": ["图片编号: String", "图片URL: String", "排序号: int", "是否主图: Boolean"] },
+        { "id": "supplier", "name": "供应商 Supplier", "x": 1040, "y": 880, "w": 350,
+          "attrs": ["供应商编号: String", "供应商名称: String", "联系方式: String", "结算方式: String"] }
+      ],
+      "rels": [
+        { "type": "gen", "from": "buyer", "to": "user" },
+        { "type": "gen", "from": "seller", "to": "user" },
+        { "type": "assoc", "from": "seller", "to": "shop", "m1": "1", "m2": "0..*" },
+        { "type": "comp", "from": "shop", "to": "product", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "category", "to": "product", "m1": "1", "m2": "*" },
+        { "type": "comp", "from": "product", "to": "image", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "shop", "to": "supplier", "m1": "0..*", "m2": "0..1" }
+      ]
+    },
+    {
+      "diagram": "类图（二）：商品类型与动态属性",
+      "canvas": [1500, 880],
+      "items": [
+        { "id": "p2", "name": "商品 Product（引用）", "x": 80, "y": 40, "w": 350,
+          "attrs": ["商品编号: String", "商品名称: String", "基准价格: Decimal"] },
+        { "id": "c2", "name": "商品类别 Category（引用）", "x": 520, "y": 40, "w": 330,
+          "attrs": ["类别编号: String", "类别名称: String"] },
+        { "id": "attrdef", "name": "属性定义 AttributeDef", "x": 980, "y": 40, "w": 360,
+          "attrs": ["属性编号: String", "属性名称: String", "数据类型: String", "是否必填: Boolean"],
+          "ops": ["校验值()"] },
+        { "id": "attrval", "name": "商品属性值 ProductAttrValue", "x": 980, "y": 330, "w": 360,
+          "attrs": ["属性值编号: String", "属性值: String", "计量单位: String"] },
+        { "id": "physical", "name": "实物商品 PhysicalProduct", "x": 120, "y": 300, "w": 350,
+          "attrs": ["包装规格: String", "是否需配套: Boolean"] },
+        { "id": "virtual", "name": "虚拟商品 VirtualProduct", "x": 120, "y": 720, "w": 350,
+          "attrs": ["卡密/下载链接: String", "有效天数: int"] },
+        { "id": "single", "name": "单件商品 SingleItem", "x": 560, "y": 300, "w": 280,
+          "attrs": ["单件规格: String"] },
+        { "id": "multi", "name": "多件商品 MultiItem", "x": 560, "y": 455, "w": 280,
+          "attrs": ["组合件数: int", "单件规格: String"] },
+        { "id": "bundle", "name": "套装商品 BundleItem", "x": 560, "y": 615, "w": 280,
+          "attrs": ["套装件数: int", "套装清单: String"] }
+      ],
+      "rels": [
+        { "type": "gen", "from": "physical", "to": "p2" },
+        { "type": "gen", "from": "virtual", "to": "p2" },
+        { "type": "gen", "from": "single", "to": "physical" },
+        { "type": "gen", "from": "multi", "to": "physical" },
+        { "type": "gen", "from": "bundle", "to": "physical" },
+        { "type": "comp", "from": "p2", "to": "attrval", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "attrdef", "to": "attrval", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "c2", "to": "attrdef", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "c2", "to": "p2", "m1": "1", "m2": "*" }
+      ]
+    },
+    {
+      "diagram": "类图（三）：购物车、订单与营销",
+      "canvas": [1500, 1140],
+      "items": [
+        { "id": "buyer3", "name": "买家 Buyer（引用）", "x": 60, "y": 40, "w": 320,
+          "attrs": ["买家编号: String", "买家等级: int", "积分: int"] },
+        { "id": "cart", "name": "购物车 Cart", "x": 60, "y": 280, "w": 340,
+          "attrs": ["购物车编号: String", "创建时间: Date", "合计金额: Decimal"] },
+        { "id": "cartitem", "name": "购物车项 CartItem", "x": 60, "y": 520, "w": 360,
+          "attrs": ["购物车项编号: String", "数量: int", "加入时间: Date", "是否选中: Boolean"] },
+        { "id": "address", "name": "收货地址 Address", "x": 60, "y": 800, "w": 360,
+          "attrs": ["地址编号: String", "收件人: String", "联系电话: String", "省市区: String", "详细地址: String", "是否默认: Boolean"] },
+        { "id": "order", "name": "订单 Order", "x": 500, "y": 40, "w": 400,
+          "attrs": ["订单编号: String", "下单时间: Date", "订单状态: 枚举", "商品总额: Decimal", "优惠金额: Decimal", "实付金额: Decimal", "支付方式: String"],
+          "ops": ["生成订单()", "确认收货()"] },
+        { "id": "orderitem", "name": "订单项 OrderItem", "x": 500, "y": 480, "w": 340,
+          "attrs": ["订单项编号: String", "数量: int", "成交单价: Decimal", "小计: Decimal"] },
+        { "id": "returnreq", "name": "退货申请 ReturnRequest", "x": 960, "y": 620, "w": 360,
+          "attrs": ["申请编号: String", "退货原因: String", "申请时间: Date", "审核状态: 枚举", "退款金额: Decimal"],
+          "ops": ["审核()"] },
+        { "id": "coupon", "name": "优惠券 Coupon", "x": 960, "y": 40, "w": 360,
+          "attrs": ["券编号: String", "券类型: 枚举", "面额: Decimal", "折扣率: Decimal", "使用门槛: Decimal", "生效时间: Date", "失效时间: Date", "状态: 枚举"] },
+        { "id": "promotion", "name": "促销活动 Promotion", "x": 960, "y": 360, "w": 360,
+          "attrs": ["活动编号: String", "活动类型: 枚举", "折扣率: Decimal", "开始时间: Date", "结束时间: Date"] },
+        { "id": "product3", "name": "商品 Product（引用）", "x": 500, "y": 860, "w": 350,
+          "attrs": ["商品编号: String", "商品名称: String", "价格: Decimal"] }
+      ],
+      "rels": [
+        { "type": "comp", "from": "buyer3", "to": "cart", "m1": "1", "m2": "1" },
+        { "type": "assoc", "from": "buyer3", "to": "order", "m1": "1", "m2": "*" },
+        { "type": "comp", "from": "buyer3", "to": "address", "m1": "1", "m2": "*" },
+        { "type": "comp", "from": "cart", "to": "cartitem", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "cartitem", "to": "product3", "m1": "*", "m2": "1" },
+        { "type": "comp", "from": "order", "to": "orderitem", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "orderitem", "to": "product3", "m1": "*", "m2": "1" },
+        { "type": "assoc", "from": "order", "to": "address", "m1": "*", "m2": "1" },
+        { "type": "assoc", "from": "order", "to": "coupon", "m1": "0..*", "m2": "0..1" },
+        { "type": "assoc", "from": "order", "to": "promotion", "m1": "0..*", "m2": "0..1" },
+        { "type": "comp", "from": "order", "to": "returnreq", "m1": "1", "m2": "0..1" }
+      ]
+    },
+    {
+      "diagram": "类图（四）：商品比价",
+      "canvas": [1320, 620],
+      "items": [
+        { "id": "buyer4", "name": "买家 Buyer（引用）", "x": 60, "y": 60, "w": 320,
+          "attrs": ["买家编号: String", "买家等级: int", "积分: int"] },
+        { "id": "comp", "name": "比价单 Comparison", "x": 60, "y": 290, "w": 350,
+          "attrs": ["比价单编号: String", "创建时间: Date", "比较维度: String"],
+          "ops": ["添加商品()"] },
+        { "id": "compitem", "name": "比价项 ComparisonItem", "x": 540, "y": 290, "w": 350,
+          "attrs": ["比价项编号: String", "快照价格: Decimal", "快照时间: Date"] },
+        { "id": "product4", "name": "商品 Product（引用）", "x": 1000, "y": 300, "w": 300,
+          "attrs": ["商品编号: String", "商品名称: String"] }
+      ],
+      "note": { "x": 540, "y": 60, "w": 460, "h": 105, "text": "比价单中的商品须为同一类别，\n且最多只能添加 5 件商品。" },
+      "rels": [
+        { "type": "assoc", "from": "buyer4", "to": "comp", "m1": "1", "m2": "*" },
+        { "type": "assoc", "from": "comp", "to": "compitem", "m1": "1", "m2": "1..5" },
+        { "type": "assoc", "from": "compitem", "to": "product4", "m1": "*", "m2": "1" }
+      ]
+    },
+    {
+      "diagram": "装饰器模式类图",
+      "canvas": [1200, 745],
+      "items": [
+        { "id": "door", "name": "门 Door", "x": 440, "y": 40, "w": 400, "stereo": "interface",
+          "ops": ["open()", "close()"] },
+        { "id": "simple", "name": "普通门 SimpleDoor", "x": 60, "y": 300, "w": 320,
+          "ops": ["open()", "close()"] },
+        { "id": "deco", "name": "门装饰器 DoorDecorator", "x": 440, "y": 300, "w": 400,
+          "attrs": ["decoratedDoor: Door"], "ops": ["open()", "close()"] },
+        { "id": "lock", "name": "门锁装饰 LockDecorator", "x": 60, "y": 560, "w": 320,
+          "ops": ["open()", "close()"] },
+        { "id": "bell", "name": "门铃装饰 BellDecorator", "x": 440, "y": 560, "w": 320,
+          "ops": ["open()", "close()"] },
+        { "id": "couplet", "name": "对联装饰 CoupletDecorator", "x": 820, "y": 560, "w": 340,
+          "ops": ["open()", "close()"] }
+      ],
+      "rels": [
+        { "type": "gen", "from": "simple", "to": "door" },
+        { "type": "gen", "from": "deco", "to": "door" },
+        { "type": "gen", "from": "lock", "to": "deco" },
+        { "type": "gen", "from": "bell", "to": "deco" },
+        { "type": "gen", "from": "couplet", "to": "deco" },
+        { "type": "comp", "from": "deco", "to": "door", "m1": "1", "m2": "1" }
+      ]
+    },
+    {
+      "diagram": "观察者模式类图",
+      "canvas": [1500, 640],
+      "items": [
+        { "id": "mail", "name": "邮箱 MailBox", "x": 80, "y": 40, "w": 400,
+          "attrs": ["observers: List<Observer>"],
+          "ops": ["attach(o: Observer)", "detach(o: Observer)", "notify()"] },
+        { "id": "obs", "name": "观察者 Observer", "x": 780, "y": 40, "w": 360, "stereo": "interface",
+          "ops": ["update(mail: Mail)"] },
+        { "id": "qq", "name": "QQ 通知器 QQNotifier", "x": 470, "y": 460, "w": 320,
+          "ops": ["update(mail: Mail)"] },
+        { "id": "sms", "name": "短信通知器 SmsNotifier", "x": 820, "y": 460, "w": 320,
+          "ops": ["update(mail: Mail)"] },
+        { "id": "app", "name": "APP 通知器 AppNotifier", "x": 1160, "y": 460, "w": 320,
+          "ops": ["update(mail: Mail)"] }
+      ],
+      "rels": [
+        { "type": "assoc", "from": "mail", "to": "obs", "m1": "1", "m2": "*", "role1": "observers" },
+        { "type": "gen", "from": "qq", "to": "obs" },
+        { "type": "gen", "from": "sms", "to": "obs" },
+        { "type": "gen", "from": "app", "to": "obs" }
+      ]
+    }
+  ]
+}
