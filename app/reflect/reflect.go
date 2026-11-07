@@ -10,6 +10,20 @@ type User struct {
 	Id   int
 }
 
+type man struct{
+	Name string `info:"name" doc:"我的名字"`
+	Sex string `info:"sex"`
+}
+
+func findTag(st interface{}){
+	t:=reflect.TypeOf(st).Elem()
+	for i:=0;i<t.NumField();i++{
+		tst:=t.Field(i).Tag.Get("info")
+		td:=t.Field(i).Tag.Get("doc")
+		fmt.Println("info:",tst,"doc:",td)
+	}
+}
+
 func reflectNum(arg interface{}) {
 	fmt.Println("value:", reflect.ValueOf(arg))
 	fmt.Println("type:", reflect.TypeOf(arg))
@@ -20,6 +34,8 @@ func main() {
     user:=User{"li5",45,250123}
 	FieldMethod(user)
 	user.Call()
+	var ma man
+	findTag(&ma)
 }
 func (t *User) Call(){
 	fmt.Println("User is called")
